@@ -1,0 +1,49 @@
+Вот все что вам нужно для счастья в среду:
+
+Текстовые файлы и циклическое выполнение
+
+VAR
+  Ch: CHAR;
+  Chars: TEXT; {FILE OF CHAR}
+  
+  
+ASSIGN(Chars, 'c:\file.txt'); {прикрепляем к переменной конкретный файл, НЕ открывая его (его может даже не быть), иначе мы используем файл во временной директории (короче можно не писать это для временного файла)}
+
+REWRITE(Chars); {W открыть на запись или создать новый}
+
+RESET(Chars); {R открыть на чтение, установить указатель(курсор) на начало файла}
+
+READ(Chars, Ch); {читаем из файла как из обычной консоли}
+
+WRITE(Chars, 'data'); {пишем}
+
+PROGRAM CopyTwice(INPUT, OUTPUT);
+VAR
+  Ch: CHAR;
+  Chars: TEXT;
+BEGIN {CopyTwice}
+  {Копировать INPUT в Chars}
+  {Копировать Chars в OUTPUT}
+END. {CopyTwice}
+
+  {Копировать INPUT в Chars}
+  REWRITE(Chars);
+  READ(INPUT, Ch);
+  WHILE Ch <> '#'
+  DO
+    BEGIN
+      WRITE(Chars, Ch);
+      READ(INPUT, Ch)
+    END;
+  WRITELN(Chars, '#');
+  
+  {Копировать Chars в OUTPUT}
+  RESET(Chars);
+  READ(Chars, Ch);
+  WHILE Ch <> '#'
+  DO
+    BEGIN
+      WRITE( Ch);
+      READ(Chars, Ch)
+    END;
+  WRITELN( '#');

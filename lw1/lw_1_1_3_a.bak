@@ -1,0 +1,5 @@
+PROGRAM PrintWestern(INPUT, OUTPUT);
+BEGIN
+  WRITELN('‘OWBOY')
+END.
+

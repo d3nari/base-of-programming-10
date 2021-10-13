@@ -1,0 +1,4 @@
+PROGRAM WritelnCar(INPUT, OUTPUT);
+BEGIN
+  WRITELN('‹€„€')
+END.
